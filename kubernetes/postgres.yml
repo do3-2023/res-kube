@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: res
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: db
+  template:
+    metadata:
+      labels:
+        name: db
+    spec:
+      containers:
+        - env:
+            - name: "POSTGRES_DB"
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: POSTGRES_DB
+            - name: "POSTGRES_USER"
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: POSTGRES_USER
+            - name: "POSTGRES_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: POSTGRES_PASSWORD
+          image: postgres:10.4
+          imagePullPolicy: IfNotPresent
+          name: db
+          ports:
+            - name: db
+              containerPort: 5432
+              protocol: TCP

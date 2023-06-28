@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: res
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: api
+  template:
+    metadata:
+      labels:
+        name: api
+    spec:
+      containers:
+        - env:
+              - name: "POSTGRES_DB"
+                valueFrom:
+                  secretKeyRef:
+                    name: db
+                    key: POSTGRES_DB
+              - name: "POSTGRES_USER"
+                valueFrom:
+                  secretKeyRef:
+                    name: db
+                    key: POSTGRES_USER
+              - name: "POSTGRES_PASSWORD"
+                valueFrom:
+                  secretKeyRef:
+                    name: db
+                    key: POSTGRES_PASSWORD
+          image: ghcr.io/do3-2023/res-kube/res-api:latest
+          imagePullPolicy: Always
+          name: api
+          ports:
+            - containerPort: 8080
+              name: api
+              protocol: TCP

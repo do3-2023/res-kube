@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: res
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: web
+  template:
+    metadata:
+      labels:
+        name: web
+    spec:
+      containers:
+        - image: ghcr.io/do3-2023/res-kube/res-web:latest
+          imagePullPolicy: IfNotPresent
+          name: web
+          ports:
+            - containerPort: 3000
+              name: web
+              protocol: TCP
