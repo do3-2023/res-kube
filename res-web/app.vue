@@ -7,6 +7,6 @@
 
 <script setup>
 
-const {data, error} = await useFetch('http://api.res-back.svc.cluster.local:8080/healtz')
+const {data, error} = await useFetch('http://api.res-back.svc.cluster.local:8080/healthz')
 
 </script>

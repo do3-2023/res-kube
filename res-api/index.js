@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/healtz', (req, res) => {
+app.get('/healthz', (req, res) => {
     pool.query('SELECT NOW()', (err, result) => {
         if (err) {
             res.status(500).send(err)
