@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web
-  namespace: res
+  namespace: res-front
 spec:
   ports:
     - name: 3000-tcp

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
-  namespace: res
+  namespace: res-front
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/do3-2023/res-kube/res-web:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: web
           ports:
             - containerPort: 3000

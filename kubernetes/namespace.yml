@@ -1,4 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: res
+  name: res-back
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: res-front
